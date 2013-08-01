@@ -1,0 +1,273 @@
+<PsychoPy2experiment version="1.77.00" encoding="utf-8">
+  <Settings>
+    <Param name="Show mouse" val="False" valType="bool" updates="None"/>
+    <Param name="Save csv file" val="False" valType="bool" updates="None"/>
+    <Param name="Monitor" val="testMonitor" valType="str" updates="None"/>
+    <Param name="Enable Escape" val="True" valType="bool" updates="None"/>
+    <Param name="color" val="$[-1,-1,-1]" valType="str" updates="None"/>
+    <Param name="Window size (pixels)" val="[1920, 1080]" valType="code" updates="None"/>
+    <Param name="Full-screen window" val="True" valType="bool" updates="None"/>
+    <Param name="colorSpace" val="rgb" valType="str" updates="None"/>
+    <Param name="Save log file" val="True" valType="bool" updates="None"/>
+    <Param name="Experiment info" val="{u'session': u'001', u'participant': u''}" valType="code" updates="None"/>
+    <Param name="Save excel file" val="False" valType="bool" updates="None"/>
+    <Param name="Save wide csv file" val="True" valType="bool" updates="None"/>
+    <Param name="Save psydat file" val="True" valType="bool" updates="None"/>
+    <Param name="expName" val="functional_localizer" valType="str" updates="None"/>
+    <Param name="logging level" val="exp" valType="code" updates="None"/>
+    <Param name="Units" val="use prefs" valType="str" updates="None"/>
+    <Param name="Show info dlg" val="True" valType="bool" updates="None"/>
+    <Param name="Saved data folder" val="" valType="code" updates="None"/>
+    <Param name="Screen" val="1" valType="num" updates="None"/>
+  </Settings>
+  <Routines>
+    <Routine name="blocks">
+      <ImageComponent name="primary_image">
+        <Param name="opacity" val="0.5" valType="code" updates="constant"/>
+        <Param name="flipVert" val="False" valType="bool" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="primary_image" valType="code" updates="constant"/>
+        <Param name="color" val="$[1,1,1]" valType="str" updates="constant"/>
+        <Param name="stopVal" val=".5" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="mask" val="None" valType="str" updates="constant"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="interpolate" val="linear" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="texture resolution" val="128" valType="code" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="flipHoriz" val="False" valType="bool" updates="constant"/>
+        <Param name="image" val="$primary_placeholder" valType="str" updates="set every repeat"/>
+        <Param name="advancedParams"/>
+        <Param name="size" val="[1, 1]" valType="code" updates="constant"/>
+      </ImageComponent>
+      <CodeComponent name="code">
+        <Param name="Begin Experiment" val="" valType="code" updates="constant"/>
+        <Param name="name" val="code" valType="code" updates="None"/>
+        <Param name="Each Frame" val="" valType="code" updates="constant"/>
+        <Param name="Begin Routine" val="" valType="code" updates="constant"/>
+        <Param name="End Routine" val="blockcount=blockcount+1&#10;if blockcount==48:&#10;    primary_stimlist.finished=1&#10;    second_stimlist.finished=1" valType="code" updates="constant"/>
+        <Param name="End Experiment" val="" valType="code" updates="constant"/>
+      </CodeComponent>
+      <ImageComponent name="secondary_image">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="flipVert" val="False" valType="bool" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="secondary_image" valType="code" updates="constant"/>
+        <Param name="color" val="$[1,1,1]" valType="str" updates="constant"/>
+        <Param name="stopVal" val=".5" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="mask" val="None" valType="str" updates="constant"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="interpolate" val="linear" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="texture resolution" val="128" valType="code" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="flipHoriz" val="False" valType="bool" updates="constant"/>
+        <Param name="image" val="$secondary_placeholder" valType="str" updates="set every repeat"/>
+        <Param name="advancedParams"/>
+        <Param name="size" val="[0.5, 0.5]" valType="code" updates="constant"/>
+      </ImageComponent>
+    </Routine>
+    <Routine name="fixation_2">
+      <ImageComponent name="fixation_image_2">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="flipVert" val="False" valType="bool" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="fixation_image_2" valType="code" updates="constant"/>
+        <Param name="color" val="$[1,1,1]" valType="str" updates="constant"/>
+        <Param name="stopVal" val=".25" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="mask" val="None" valType="str" updates="constant"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="interpolate" val="linear" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="texture resolution" val="128" valType="code" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="flipHoriz" val="False" valType="bool" updates="constant"/>
+        <Param name="image" val="stimulus/fixation.png" valType="str" updates="constant"/>
+        <Param name="advancedParams"/>
+        <Param name="size" val="[1,1]" valType="code" updates="constant"/>
+      </ImageComponent>
+    </Routine>
+    <Routine name="fixation">
+      <ImageComponent name="fixation_image">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="flipVert" val="False" valType="bool" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="fixation_image" valType="code" updates="constant"/>
+        <Param name="color" val="$[1,1,1]" valType="str" updates="constant"/>
+        <Param name="stopVal" val="36" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="mask" val="None" valType="str" updates="constant"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="interpolate" val="linear" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="texture resolution" val="128" valType="code" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="flipHoriz" val="False" valType="bool" updates="constant"/>
+        <Param name="image" val="stimulus/fixation.png" valType="str" updates="constant"/>
+        <Param name="advancedParams"/>
+        <Param name="size" val="[1,1]" valType="code" updates="constant"/>
+      </ImageComponent>
+    </Routine>
+    <Routine name="instruction">
+      <TextComponent name="instr">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="instr" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="$instruction_text" valType="str" updates="set every repeat"/>
+        <Param name="stopVal" val="ins_placeholder" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
+      </TextComponent>
+      <CodeComponent name="code_3">
+        <Param name="Begin Experiment" val="" valType="code" updates="constant"/>
+        <Param name="name" val="code_3" valType="code" updates="None"/>
+        <Param name="Each Frame" val="" valType="code" updates="constant"/>
+        <Param name="Begin Routine" val="" valType="code" updates="constant"/>
+        <Param name="End Routine" val="blockcount=0" valType="code" updates="constant"/>
+        <Param name="End Experiment" val="" valType="code" updates="constant"/>
+      </CodeComponent>
+    </Routine>
+    <Routine name="pretrigger_instr">
+      <TextComponent name="text_2">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="text_2" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="Instructions:&#13;&#10;&#13;&#10;Please pay attention to the images" valType="str" updates="constant"/>
+        <Param name="stopVal" val="" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.08" valType="code" updates="constant"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_4">
+        <Param name="correctAns" val="" valType="str" updates="constant"/>
+        <Param name="storeCorrect" val="False" valType="bool" updates="constant"/>
+        <Param name="name" val="key_resp_4" valType="code" updates="None"/>
+        <Param name="stopVal" val="" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="forceEndRoutine" val="True" valType="bool" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="discard previous" val="True" valType="bool" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="allowedKeys" val="'space'" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="store" val="last key" valType="str" updates="constant"/>
+      </KeyboardComponent>
+    </Routine>
+    <Routine name="trigger">
+      <TextComponent name="text">
+        <Param name="opacity" val="1" valType="code" updates="constant"/>
+        <Param name="colorSpace" val="rgb" valType="str" updates="constant"/>
+        <Param name="name" val="text" valType="code" updates="None"/>
+        <Param name="wrapWidth" val="" valType="code" updates="constant"/>
+        <Param name="color" val="white" valType="str" updates="constant"/>
+        <Param name="text" val="Waiting for scanner trigger ..." valType="str" updates="constant"/>
+        <Param name="stopVal" val="" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="pos" val="[0, 0]" valType="code" updates="constant"/>
+        <Param name="flip" val="" valType="str" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="units" val="from exp settings" valType="str" updates="None"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="ori" val="0" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="font" val="Arial" valType="str" updates="constant"/>
+        <Param name="letterHeight" val="0.1" valType="code" updates="constant"/>
+      </TextComponent>
+      <KeyboardComponent name="key_resp_2">
+        <Param name="correctAns" val="" valType="str" updates="constant"/>
+        <Param name="storeCorrect" val="False" valType="bool" updates="constant"/>
+        <Param name="name" val="key_resp_2" valType="code" updates="None"/>
+        <Param name="stopVal" val="" valType="code" updates="constant"/>
+        <Param name="durationEstim" val="" valType="code" updates="None"/>
+        <Param name="forceEndRoutine" val="True" valType="bool" updates="constant"/>
+        <Param name="startEstim" val="" valType="code" updates="None"/>
+        <Param name="discard previous" val="True" valType="bool" updates="constant"/>
+        <Param name="startType" val="time (s)" valType="str" updates="None"/>
+        <Param name="allowedKeys" val="" valType="code" updates="constant"/>
+        <Param name="stopType" val="duration (s)" valType="str" updates="None"/>
+        <Param name="startVal" val="0.0" valType="code" updates="None"/>
+        <Param name="store" val="last key" valType="str" updates="constant"/>
+      </KeyboardComponent>
+    </Routine>
+  </Routines>
+  <Flow>
+    <Routine name="pretrigger_instr"/>
+    <Routine name="trigger"/>
+    <Routine name="fixation"/>
+    <LoopInitiator loopType="TrialHandler" name="stimulus_type">
+      <Param name="conditionsFile" val="conditions/functional_localizer_conditions.csv" valType="str" updates="None"/>
+      <Param name="name" val="stimulus_type" valType="code" updates="None"/>
+      <Param name="random seed" val="" valType="code" updates="None"/>
+      <Param name="loopType" val="sequential" valType="str" updates="None"/>
+      <Param name="nReps" val="1" valType="code" updates="None"/>
+      <Param name="endPoints" val="[0, 1]" valType="num" updates="None"/>
+      <Param name="conditions" val="[{'instruction_text': u'', 'instruction_length': 0, 'stimulus_list': u'face', 'stimulus_list3': u'', 'stimulus_list2': u'', 'conditions': u'Faces'}, {'instruction_text': u'Attend to House', 'instruction_length': 2, 'stimulus_list': u'face', 'stimulus_list3': u'', 'stimulus_list2': u'scene', 'conditions': u'Attend to house'}, {'instruction_text': u'', 'instruction_length': 0, 'stimulus_list': u'scene', 'stimulus_list3': u'', 'stimulus_list2': u'', 'conditions': u'Scenes'}, {'instruction_text': u'Attend to Face', 'instruction_length': 2, 'stimulus_list': u'face', 'stimulus_list3': u'', 'stimulus_list2': u'scene', 'conditions': u'Attend to face'}, {'instruction_text': u'', 'instruction_length': 0, 'stimulus_list': u'', 'stimulus_list3': u'fixation', 'stimulus_list2': u'', 'conditions': u'Fixation'}, {'instruction_text': u'', 'instruction_length': 0, 'stimulus_list': u'scene', 'stimulus_list3': u'', 'stimulus_list2': u'', 'conditions': u'Scenes'}, {'instruction_text': u'Attend to Face', 'instruction_length': 2, 'stimulus_list': u'face', 'stimulus_list3': u'', 'stimulus_list2': u'scene', 'conditions': u'Attend to face'}, {'instruction_text': u'', 'instruction_length': 0, 'stimulus_list': u'face', 'stimulus_list3': u'', 'stimulus_list2': u'', 'conditions': u'Faces'}, {'instruction_text': u'Attend to House', 'instruction_length': 2, 'stimulus_list': u'face', 'stimulus_list3': u'', 'stimulus_list2': u'scene', 'conditions': u'Attend to house'}]" valType="str" updates="None"/>
+    </LoopInitiator>
+    <Routine name="instruction"/>
+    <LoopInitiator loopType="TrialHandler" name="primary_stimlist">
+      <Param name="conditionsFile" val="conditions/fouse_stimuli_facelist.csv" valType="str" updates="None"/>
+      <Param name="name" val="primary_stimlist" valType="code" updates="None"/>
+      <Param name="random seed" val="seed_holder" valType="code" updates="None"/>
+      <Param name="loopType" val="random" valType="str" updates="None"/>
+      <Param name="nReps" val="1" valType="code" updates="None"/>
+      <Param name="endPoints" val="[0, 1]" valType="num" updates="None"/>
+      <Param name="conditions" val="[{'face': u'stimulus/Faces/face000.jpg'}, {'face': u'stimulus/Faces/face001.jpg'}, {'face': u'stimulus/Faces/face002.jpg'}, {'face': u'stimulus/Faces/face003.jpg'}, {'face': u'stimulus/Faces/face004.jpg'}, {'face': u'stimulus/Faces/face005.jpg'}, {'face': u'stimulus/Faces/face006.jpg'}, {'face': u'stimulus/Faces/face007.jpg'}, {'face': u'stimulus/Faces/face008.jpg'}, {'face': u'stimulus/Faces/face009.jpg'}, {'face': u'stimulus/Faces/face010.jpg'}, {'face': u'stimulus/Faces/face011.jpg'}, {'face': u'stimulus/Faces/face012.jpg'}, {'face': u'stimulus/Faces/face013.jpg'}, {'face': u'stimulus/Faces/face014.jpg'}, {'face': u'stimulus/Faces/face015.jpg'}, {'face': u'stimulus/Faces/face016.jpg'}, {'face': u'stimulus/Faces/face017.jpg'}, {'face': u'stimulus/Faces/face018.jpg'}, {'face': u'stimulus/Faces/face019.jpg'}, {'face': u'stimulus/Faces/face020.jpg'}, {'face': u'stimulus/Faces/face021.jpg'}, {'face': u'stimulus/Faces/face022.jpg'}, {'face': u'stimulus/Faces/face023.jpg'}, {'face': u'stimulus/Faces/face024.jpg'}, {'face': u'stimulus/Faces/face025.jpg'}, {'face': u'stimulus/Faces/face026.jpg'}, {'face': u'stimulus/Faces/face027.jpg'}, {'face': u'stimulus/Faces/face028.jpg'}, {'face': u'stimulus/Faces/face029.jpg'}, {'face': u'stimulus/Faces/face030.jpg'}, {'face': u'stimulus/Faces/face031.jpg'}, {'face': u'stimulus/Faces/face032.jpg'}, {'face': u'stimulus/Faces/face033.jpg'}, {'face': u'stimulus/Faces/face034.jpg'}, {'face': u'stimulus/Faces/face035.jpg'}, {'face': u'stimulus/Faces/face036.jpg'}, {'face': u'stimulus/Faces/face037.jpg'}, {'face': u'stimulus/Faces/face038.jpg'}, {'face': u'stimulus/Faces/face039.jpg'}, {'face': u'stimulus/Faces/face040.jpg'}, {'face': u'stimulus/Faces/face041.jpg'}, {'face': u'stimulus/Faces/face042.jpg'}, {'face': u'stimulus/Faces/face043.jpg'}, {'face': u'stimulus/Faces/face044.jpg'}, {'face': u'stimulus/Faces/face045.jpg'}, {'face': u'stimulus/Faces/face046.jpg'}, {'face': u'stimulus/Faces/face047.jpg'}, {'face': u'stimulus/Faces/face048.jpg'}, {'face': u'stimulus/Faces/face049.jpg'}, {'face': u'stimulus/Faces/face050.jpg'}, {'face': u'stimulus/Faces/face051.jpg'}, {'face': u'stimulus/Faces/face052.jpg'}, {'face': u'stimulus/Faces/face053.jpg'}, {'face': u'stimulus/Faces/face054.jpg'}, {'face': u'stimulus/Faces/face055.jpg'}, {'face': u'stimulus/Faces/face056.jpg'}, {'face': u'stimulus/Faces/face057.jpg'}, {'face': u'stimulus/Faces/face058.jpg'}, {'face': u'stimulus/Faces/face059.jpg'}, {'face': u'stimulus/Faces/face060.jpg'}, {'face': u'stimulus/Faces/face061.jpg'}, {'face': u'stimulus/Faces/face062.jpg'}, {'face': u'stimulus/Faces/face063.jpg'}, {'face': u'stimulus/Faces/face064.jpg'}, {'face': u'stimulus/Faces/face065.jpg'}, {'face': u'stimulus/Faces/face066.jpg'}, {'face': u'stimulus/Faces/face067.jpg'}, {'face': u'stimulus/Faces/face068.jpg'}, {'face': u'stimulus/Faces/face069.jpg'}, {'face': u'stimulus/Faces/face070.jpg'}, {'face': u'stimulus/Faces/face071.jpg'}, {'face': u'stimulus/Faces/face072.jpg'}, {'face': u'stimulus/Faces/face073.jpg'}, {'face': u'stimulus/Faces/face074.jpg'}, {'face': u'stimulus/Faces/face075.jpg'}, {'face': u'stimulus/Faces/face076.jpg'}, {'face': u'stimulus/Faces/face077.jpg'}, {'face': u'stimulus/Faces/face078.jpg'}, {'face': u'stimulus/Faces/face079.jpg'}, {'face': u'stimulus/Faces/face080.jpg'}, {'face': u'stimulus/Faces/face081.jpg'}, {'face': u'stimulus/Faces/face082.jpg'}, {'face': u'stimulus/Faces/face083.jpg'}, {'face': u'stimulus/Faces/face084.jpg'}, {'face': u'stimulus/Faces/face085.jpg'}, {'face': u'stimulus/Faces/face086.jpg'}, {'face': u'stimulus/Faces/face087.jpg'}, {'face': u'stimulus/Faces/face088.jpg'}, {'face': u'stimulus/Faces/face089.jpg'}, {'face': u'stimulus/Faces/face090.jpg'}, {'face': u'stimulus/Faces/face091.jpg'}, {'face': u'stimulus/Faces/face092.jpg'}, {'face': u'stimulus/Faces/face093.jpg'}, {'face': u'stimulus/Faces/face094.jpg'}, {'face': u'stimulus/Faces/face095.jpg'}, {'face': u'stimulus/Faces/face096.jpg'}, {'face': u'stimulus/Faces/face097.jpg'}, {'face': u'stimulus/Faces/face098.jpg'}, {'face': u'stimulus/Faces/face099.jpg'}, {'face': u'stimulus/Faces/face100.jpg'}, {'face': u'stimulus/Faces/face101.jpg'}, {'face': u'stimulus/Faces/face102.jpg'}, {'face': u'stimulus/Faces/face103.jpg'}, {'face': u'stimulus/Faces/face104.jpg'}, {'face': u'stimulus/Faces/face105.jpg'}, {'face': u'stimulus/Faces/face106.jpg'}, {'face': u'stimulus/Faces/face107.jpg'}, {'face': u'stimulus/Faces/face108.jpg'}, {'face': u'stimulus/Faces/face109.jpg'}, {'face': u'stimulus/Faces/face110.jpg'}, {'face': u'stimulus/Faces/face111.jpg'}, {'face': u'stimulus/Faces/face112.jpg'}, {'face': u'stimulus/Faces/face113.jpg'}, {'face': u'stimulus/Faces/face114.jpg'}, {'face': u'stimulus/Faces/face115.jpg'}, {'face': u'stimulus/Faces/face116.jpg'}, {'face': u'stimulus/Faces/face117.jpg'}, {'face': u'stimulus/Faces/face118.jpg'}, {'face': u'stimulus/Faces/face119.jpg'}, {'face': u'stimulus/Faces/face120.jpg'}, {'face': u'stimulus/Faces/face121.jpg'}, {'face': u'stimulus/Faces/face122.jpg'}, {'face': u'stimulus/Faces/face123.jpg'}, {'face': u'stimulus/Faces/face124.jpg'}, {'face': u'stimulus/Faces/face125.jpg'}, {'face': u'stimulus/Faces/face126.jpg'}, {'face': u'stimulus/Faces/face127.jpg'}, {'face': u'stimulus/Faces/face128.jpg'}]" valType="str" updates="None"/>
+    </LoopInitiator>
+    <LoopInitiator loopType="TrialHandler" name="second_stimlist">
+      <Param name="conditionsFile" val="conditions/fouse_stimuli_scenelist.csv" valType="str" updates="None"/>
+      <Param name="name" val="second_stimlist" valType="code" updates="None"/>
+      <Param name="random seed" val="seed_placeholder" valType="code" updates="None"/>
+      <Param name="loopType" val="random" valType="str" updates="None"/>
+      <Param name="nReps" val="1" valType="code" updates="None"/>
+      <Param name="endPoints" val="[0, 1]" valType="num" updates="None"/>
+      <Param name="conditions" val="[{'scene': u'stimulus/Scenes/scene00.jpg'}, {'scene': u'stimulus/Scenes/scene01.jpg'}, {'scene': u'stimulus/Scenes/scene02.jpg'}, {'scene': u'stimulus/Scenes/scene03.jpg'}, {'scene': u'stimulus/Scenes/scene04.jpg'}, {'scene': u'stimulus/Scenes/scene05.jpg'}, {'scene': u'stimulus/Scenes/scene06.jpg'}, {'scene': u'stimulus/Scenes/scene07.jpg'}, {'scene': u'stimulus/Scenes/scene08.jpg'}, {'scene': u'stimulus/Scenes/scene09.jpg'}, {'scene': u'stimulus/Scenes/scene10.jpg'}, {'scene': u'stimulus/Scenes/scene11.jpg'}, {'scene': u'stimulus/Scenes/scene12.jpg'}, {'scene': u'stimulus/Scenes/scene13.jpg'}, {'scene': u'stimulus/Scenes/scene14.jpg'}, {'scene': u'stimulus/Scenes/scene15.jpg'}, {'scene': u'stimulus/Scenes/scene16.jpg'}, {'scene': u'stimulus/Scenes/scene17.jpg'}, {'scene': u'stimulus/Scenes/scene18.jpg'}, {'scene': u'stimulus/Scenes/scene19.jpg'}, {'scene': u'stimulus/Scenes/scene20.jpg'}, {'scene': u'stimulus/Scenes/scene21.jpg'}, {'scene': u'stimulus/Scenes/scene22.jpg'}, {'scene': u'stimulus/Scenes/scene23.jpg'}, {'scene': u'stimulus/Scenes/scene24.jpg'}, {'scene': u'stimulus/Scenes/scene25.jpg'}, {'scene': u'stimulus/Scenes/scene26.jpg'}, {'scene': u'stimulus/Scenes/scene27.jpg'}, {'scene': u'stimulus/Scenes/scene28.jpg'}, {'scene': u'stimulus/Scenes/scene29.jpg'}, {'scene': u'stimulus/Scenes/scene30.jpg'}, {'scene': u'stimulus/Scenes/scene31.jpg'}, {'scene': u'stimulus/Scenes/scene32.jpg'}, {'scene': u'stimulus/Scenes/scene33.jpg'}, {'scene': u'stimulus/Scenes/scene34.jpg'}, {'scene': u'stimulus/Scenes/scene35.jpg'}, {'scene': u'stimulus/Scenes/scene36.jpg'}, {'scene': u'stimulus/Scenes/scene37.jpg'}, {'scene': u'stimulus/Scenes/scene38.jpg'}, {'scene': u'stimulus/Scenes/scene39.jpg'}, {'scene': u'stimulus/Scenes/scene40.jpg'}, {'scene': u'stimulus/Scenes/scene41.jpg'}, {'scene': u'stimulus/Scenes/scene42.jpg'}, {'scene': u'stimulus/Scenes/scene43.jpg'}, {'scene': u'stimulus/Scenes/scene44.jpg'}, {'scene': u'stimulus/Scenes/scene45.jpg'}, {'scene': u'stimulus/Scenes/scene46.jpg'}, {'scene': u'stimulus/Scenes/scene47.jpg'}, {'scene': u'stimulus/Scenes/scene48.jpg'}, {'scene': u'stimulus/Scenes/scene49.jpg'}, {'scene': u'stimulus/Scenes/scene50.jpg'}, {'scene': u'stimulus/Scenes/scene51.jpg'}, {'scene': u'stimulus/Scenes/scene52.jpg'}, {'scene': u'stimulus/Scenes/scene53.jpg'}, {'scene': u'stimulus/Scenes/scene54.jpg'}, {'scene': u'stimulus/Scenes/scene55.jpg'}, {'scene': u'stimulus/Scenes/scene56.jpg'}, {'scene': u'stimulus/Scenes/scene57.jpg'}, {'scene': u'stimulus/Scenes/scene58.jpg'}, {'scene': u'stimulus/Scenes/scene59.jpg'}, {'scene': u'stimulus/Scenes/scene60.jpg'}, {'scene': u'stimulus/Scenes/scene61.jpg'}, {'scene': u'stimulus/Scenes/scene62.jpg'}, {'scene': u'stimulus/Scenes/scene63.jpg'}, {'scene': u'stimulus/Scenes/scene64.jpg'}, {'scene': u'stimulus/Scenes/scene65.jpg'}, {'scene': u'stimulus/Scenes/scene66.jpg'}, {'scene': u'stimulus/Scenes/scene67.jpg'}, {'scene': u'stimulus/Scenes/scene68.jpg'}, {'scene': u'stimulus/Scenes/scene69.jpg'}, {'scene': u'stimulus/Scenes/scene70.jpg'}, {'scene': u'stimulus/Scenes/scene71.jpg'}, {'scene': u'stimulus/Scenes/scene72.jpg'}, {'scene': u'stimulus/Scenes/scene73.jpg'}, {'scene': u'stimulus/Scenes/scene74.jpg'}, {'scene': u'stimulus/Scenes/scene75.jpg'}, {'scene': u'stimulus/Scenes/scene76.jpg'}, {'scene': u'stimulus/Scenes/scene77.jpg'}, {'scene': u'stimulus/Scenes/scene78.jpg'}, {'scene': u'stimulus/Scenes/scene79.jpg'}]" valType="str" updates="None"/>
+    </LoopInitiator>
+    <Routine name="fixation_2"/>
+    <Routine name="blocks"/>
+    <LoopTerminator name="second_stimlist"/>
+    <LoopTerminator name="primary_stimlist"/>
+    <LoopTerminator name="stimulus_type"/>
+  </Flow>
+</PsychoPy2experiment>
