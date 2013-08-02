@@ -110,6 +110,7 @@ else:
     timings['fixation']=4
     timings['fixation_2']=10
     murfi_FAKE = False
+
 #if int(expInfo['session']) != 1:
 #    if os.path.isfile(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo['participant']))[-1]):
 #        print 'hurray'
@@ -181,7 +182,6 @@ image_4 = visual.ImageStim(win=win, name='image_4',
     color=[1,1,1], colorSpace='rgb', opacity=1,
     texRes=128, interpolate=True, depth=0.0)
 
-from scripts.feedback import ThermBase
 import numpy as np
 
 # Initialize components for Routine "instruction"
@@ -988,10 +988,6 @@ for thisTrial in trials:
                 top_star.setAutoDraw(False)
             except:
                 continue
-#            if thisTrial.instruction_text=='Attend to Scenes':
-#                bottom_star.setAutoDraw(False)
-#            elif thisTrial.instruction_text=='Attend to Faces':
-#                top_star.setAutoDraw(False)
         if frameN>=30:
             max_idx=30
         else:
@@ -1000,12 +996,7 @@ for thisTrial in trials:
         if int(max_idx)>1:
             for idx in range(int(max_idx)):
                 recs[idx].setAutoDraw(True)
-       # therm_ave= ThermBase(win, [0.25,1],[-0.125,-0.5])
-        #t.plot(fb_,th_,arrow,frameN)
-        #therm_ave.plot(fb,zero_val,frameN)
-        #def plot(self,fb,zero_val,arrow='up',frame=20,maxframe=10):
-        #therm_ave.draw()
-        # check if all components have finished
+
         if not continueRoutine:  # a component has requested that we end
             routineTimer.reset()  # this is the new t0 for non-slip Routines
             
