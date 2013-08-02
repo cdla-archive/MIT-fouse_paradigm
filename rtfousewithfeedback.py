@@ -44,10 +44,6 @@ else:
         previous_baselines = np.genfromtxt(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo_init['participant']))[-1])
         expInfo={u'participant':u'%s'%expInfo_init['participant'],u'session':u'%s'%expInfo_init['session'],u'V1:faces':u'%s'%previous_baselines[0],u'V2:scenes':u'%s'%previous_baselines[1],u'V3:50/50faces':u'%s'%previous_baselines[2],u'V4:50/50scenes':u'%s'%previous_baselines[3]}
         dlg2=gui.DlgFromDict(dictionary=expInfo, title=expName, order=['participant','session','V1:faces','V2:scenes','V3:50/50faces','V4:50/50scenes'],fixed=['participant','session'])
-        #expInfo['V1:faces']=previous_baselines[0]
-        #expInfo['V2:scenes']=previous_baselines[1]
-        #expInfo['V3:50/50faces']=previous_baselines[2]
-        #expInfo['V4:50/50scenes']=previous_baselines[3]
 if dlg2.OK == False: 
     core.quit()  # user pressed cancel
 
@@ -113,7 +109,7 @@ else:
     timings['stimulus']=11.5
     timings['fixation']=4
     timings['fixation_2']=10
-
+    murfi_FAKE = False
 #if int(expInfo['session']) != 1:
 #    if os.path.isfile(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo['participant']))[-1]):
 #        print 'hurray'
@@ -287,6 +283,8 @@ background_bar2 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0
 pos=(-.2,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
 zero_val_line2=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
 pos=(-.2,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
+top_text2=visual.TextStim(win,text='faces',pos=(-.8,.6),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
+bottom_text2=visual.TextStim(win,text='scenes',pos=(-.8,-.6),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
 top_star2 = visual.TextStim(win=win, ori=0, name='top_star',
     text=u'*',    font=u'Arial',
     pos=[-.2, .55], height=0.2, wrapWidth=None,
@@ -1141,6 +1139,8 @@ ending_screenComponents.append(background_bar3)
 ending_screenComponents.append(zero_val_line3)
 ending_screenComponents.append(background_bar4)
 ending_screenComponents.append(zero_val_line4)
+ending_screenComponents.append(top_text2)
+ending_screenComponents.append(bottom_text2)
 print face_scene_conditions
 rec=[]
 recs=[]

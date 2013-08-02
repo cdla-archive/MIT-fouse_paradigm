@@ -588,8 +588,6 @@ for thisTrial in trials:
             scene_image.setImage(scene)
             stimulus_instr.setText(instruction_text)
             blockcount= blockcount+1
-            #print scene
-            #print face
             # keep track of which components have finished
             stimulusComponents = []
             stimulusComponents.append(scene_image)
