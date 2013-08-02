@@ -20,6 +20,7 @@ murfi_IP = '192.168.2.5'
 murfi_PORT = 15001
 murfi_TR = 127
 num_triggers=5
+
 # Store info about the experiment session
 expName = 'rtfousewithoutfeedback'  # from the Builder filename that created this script
 expInfo = {u'session': u'001', u'participant': u''}
@@ -587,8 +588,8 @@ for thisTrial in trials:
             scene_image.setImage(scene)
             stimulus_instr.setText(instruction_text)
             blockcount= blockcount+1
-            print scene
-            print face
+            #print scene
+            #print face
             # keep track of which components have finished
             stimulusComponents = []
             stimulusComponents.append(scene_image)
@@ -915,17 +916,18 @@ while continueRoutine:
 for thisComponent in ending_screenComponents:
     if hasattr(thisComponent, "setAutoDraw"):
         thisComponent.setAutoDraw(False)
-win.close()
-core.quit()
+
 print murfi.FB_FFA
 print murfi.FB_PPA
 
 murfi_file=open('data' + os.path.sep + '%s_%s_%s_%s.txt' %(expInfo['participant'], expInfo['date'],expName,'FFA_PPA'),'w+r')
+
 for idx in range(len(murfi.FB_FFA)):
     murfi_file.write('%s %s %s \n'%(idx, murfi.FB_FFA[idx],murfi.FB_PPA[idx]))
 murfi_file.close()
 
+win.close()
+core.quit()
 # completed 4 repeats of 'trials'
 
-win.close()
 core.quit()

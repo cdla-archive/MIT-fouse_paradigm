@@ -91,14 +91,14 @@ class Murfi:
 				break
 		return
 
-murfi_IP = '192.168.1.118'
-murfi_PORT = 15001
-murfi_TR = 147
+#murfi_IP = '192.168.1.118'
+#murfi_PORT = 15001
+#murfi_TR = 147
 
 #murfi_FAKE = False
-murfi_FAKE = True
+#murfi_FAKE = True
 
-murfi = Murfi(murfi_IP, murfi_PORT, murfi_TR, murfi_FAKE)
+#murfi = Murfi(murfi_IP, murfi_PORT, murfi_TR, murfi_FAKE)
 
 #murfi.Q_ppa(1)
 #murfi.Q_ffa(1)
@@ -106,8 +106,8 @@ murfi = Murfi(murfi_IP, murfi_PORT, murfi_TR, murfi_FAKE)
 #print murfi.FB_FFA
 #print murfi.FB_PPA
 
-murfi.update()
+#murfi.update()
 
-print murfi.FB_FFA
-print murfi.FB_PPA 
+#print murfi.FB_FFA
+#print murfi.FB_PPA 
 

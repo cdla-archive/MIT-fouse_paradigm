@@ -35,19 +35,19 @@ dlg = gui.DlgFromDict(dictionary=expInfo_init, title=expName, order=['participan
 if dlg.OK == False: 
     core.quit()  # user pressed cancel
 
-#if int(expInfo_init['session'])==1:
+if int(expInfo_init['session'])==1:
 expInfo={u'participant':u'%s'%expInfo_init['participant'],u'session':u'%s'%expInfo_init['session'],u'V1:faces':u'',u'V2:scenes':u'',u'V3:50/50faces':u'',u'V4:50/50scenes':u''}
 dlg2=gui.DlgFromDict(dictionary=expInfo, title=expName, order=['participant','session','V1:faces','V2:scenes','V3:50/50faces','V4:50/50scenes'],fixed=['participant','session'])
-#else:
-#    if os.path.isfile(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo_init['participant']))[-1]):
-#        print 'using previous baseline values'
-#        previous_baselines = np.genfromtxt(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo_init['participant']))[-1])
-#        expInfo={u'participant':u'%s'%expInfo_init['participant'],u'session':u'%s'%expInfo_init['session'],u'V1:faces':u'%s'%previous_baselines[0],u'V2:scenes':u'%s'%previous_baselines[1],u'V3:50/50faces':u'%s'%previous_baselines[2],u'V4:50/50scenes':u'%s'%previous_baselines[3]}
-#        dlg2=gui.DlgFromDict(dictionary=expInfo, title=expName, order=['participant','session','V1:faces','V2:scenes','V3:50/50faces','V4:50/50scenes'],fixed=['participant','session'])
-#        #expInfo['V1:faces']=previous_baselines[0]
-#        #expInfo['V2:scenes']=previous_baselines[1]
-#        #expInfo['V3:50/50faces']=previous_baselines[2]
-#        #expInfo['V4:50/50scenes']=previous_baselines[3]
+else:
+    if os.path.isfile(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo_init['participant']))[-1]):
+        print 'using previous baseline values'
+        previous_baselines = np.genfromtxt(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo_init['participant']))[-1])
+        expInfo={u'participant':u'%s'%expInfo_init['participant'],u'session':u'%s'%expInfo_init['session'],u'V1:faces':u'%s'%previous_baselines[0],u'V2:scenes':u'%s'%previous_baselines[1],u'V3:50/50faces':u'%s'%previous_baselines[2],u'V4:50/50scenes':u'%s'%previous_baselines[3]}
+        dlg2=gui.DlgFromDict(dictionary=expInfo, title=expName, order=['participant','session','V1:faces','V2:scenes','V3:50/50faces','V4:50/50scenes'],fixed=['participant','session'])
+        #expInfo['V1:faces']=previous_baselines[0]
+        #expInfo['V2:scenes']=previous_baselines[1]
+        #expInfo['V3:50/50faces']=previous_baselines[2]
+        #expInfo['V4:50/50scenes']=previous_baselines[3]
 if dlg2.OK == False: 
     core.quit()  # user pressed cancel
 
