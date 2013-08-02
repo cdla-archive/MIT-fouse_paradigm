@@ -72,7 +72,7 @@ else:
 # Initialize components for Routine "pretrigger_instr"
 pretrigger_instrClock = core.Clock()
 text_2 = visual.TextStim(win=win, ori=0, name='text_2',
-    text='Instructions:\n\nIn this part of the experiment, you will be viewing either pure faces, pure scenes, or 50/50 blends of both. \n\n While viewing the blends, you will be asked to attend to either the face, or the scene portion.\n\n While viewing the images, if you see the same image twice in a row, please press the button box \n\n\n During the blends, if there is a repeat of the image of the condition that you were instruction to attend to, please press the button box \n\n Experimenter press space to continue',    font='Arial',
+    text='Instructions:\n\nIn this part of the experiment, you will be viewing either pure faces, pure scenes, or 50/50 blends of both. \n\n While viewing the images, if you see the same image twice in a row, please press the button box \n\n\n During the blends, if there is a repeat of the image of the condition that you are instructed please press the button box \n\n Experimenter press space to continue',    font='Arial',
     pos=[0, 0], height=0.06, wrapWidth=None,
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0)

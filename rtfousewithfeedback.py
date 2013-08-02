@@ -161,7 +161,7 @@ def makeFBrecs(zero_val,fb,fillColor=None,xoffset=0):
 # Initialize components for Routine "pretrigger_instr"
 pretrigger_instrClock = core.Clock()
 text_2 = visual.TextStim(win=win, ori=0, name='text_2',
-    text=u'Instructions:\n\nYou will be seeing series of images for this part of the experiment.\n\nEach image will be a blend of two different images. \n\nFor these blended images, you will be asked to focus on one of the layers.\n\nThe image layer that you should be focusing will be printed on the top portion of the screen. \n\nYou will also be receiving feedback on your ability to attend after each block. If the bar is green, you have done well. \n\nIf there are no images, please focus on the cross (+),  which will be located in the middle of the screen. \n\nExperimenter press spacebar to continue ',    font=u'Arial',
+    text=u'Instructions:\n\nYou will be seeing series of images for this part of the experiment.\n\nEach image will be a blend of two different images. \n\nFor these blended images, you will be asked to focus on one of the layers.\n\nThe image layer that you should be focusing will be printed on the top portion of the screen. \n\nYou will also be receiving feedback on your ability to attend after each block of images. If the bar is green, you were successful. \n\nIf there are no images, please focus on the cross (+),  which will be located in the middle of the screen. \n\nExperimenter press spacebar to continue ',    font=u'Arial',
     pos=[0, 0], height=0.06, wrapWidth=None,
     color=u'white', colorSpace=u'rgb', opacity=1,
     depth=0.0)
@@ -203,9 +203,9 @@ image = visual.ImageStim(win=win, name='image',
 
 # Initialize components for Routine "stimulus"
 stimulusClock = core.Clock()
-face_image = visual.PatchStim(win=win, name='face_image',
-    tex='sin', mask=None,
-    ori=0, pos=[0, 0], size=[1,1], sf=None, phase=0.0,
+face_image = visual.ImageStim(win=win, name='face_image',
+    image='sin', mask=None,
+    ori=0, pos=[0, 0], size=[1,1],
     color=[1,1,1], colorSpace='rgb', opacity=.5,
     texRes=128, interpolate=True, depth=0.0)
 scene_image = visual.ImageStim(win=win, name='scene_image',
@@ -569,6 +569,7 @@ if thisTrial != None:
     for paramName in thisTrial.keys():
         exec(paramName + '= thisTrial.' + paramName)
 image_list=0
+stimulus_count=0
 for thisTrial in trials:
     currentLoop = trials
     # abbreviate parameter names if possible (e.g. rgb = thisTrial.rgb)
@@ -634,188 +635,167 @@ for thisTrial in trials:
             thisComponent.setAutoDraw(False)
     blockcount=0
     
-    # set up handler to look after randomisation of conditions etc
-    face_loop = data.TrialHandler(nReps=1, method=u'random', 
-        extraInfo=expInfo, originPath=None,
-        trialList=data.importConditions('conditions/fouse_stimuli_facelist.csv'),
-        seed=((int(image_list)+5*int(expInfo['session']))), name='face_loop')
-    thisExp.addLoop(face_loop)  # add the loop to the experiment
-    thisFace_loop = face_loop.trialList[0]  # so we can initialise stimuli with some values
-    # abbreviate parameter names if possible (e.g. rgb=thisFace_loop.rgb)
-    if thisFace_loop != None:
-        for paramName in thisFace_loop.keys():
-            exec(paramName + '= thisFace_loop.' + paramName)
-    
-    for thisFace_loop in face_loop:
-        currentLoop = face_loop
-        # abbreviate parameter names if possible (e.g. rgb = thisFace_loop.rgb)
-        if thisFace_loop != None:
-            for paramName in thisFace_loop.keys():
-                exec(paramName + '= thisFace_loop.' + paramName)
+
         
-        # set up handler to look after randomisation of conditions etc
-        scene_loop = data.TrialHandler(nReps=1, method=u'random', 
-            extraInfo=expInfo, originPath=None,
-            trialList=data.importConditions('conditions/fouse_stimuli_scenelist.csv'),
-            seed=((int(image_list)+5*int(expInfo['session']))), name='scene_loop')
-        thisExp.addLoop(scene_loop)  # add the loop to the experiment
-        thisScene_loop = scene_loop.trialList[0]  # so we can initialise stimuli with some values
-        # abbreviate parameter names if possible (e.g. rgb=thisScene_loop.rgb)
+    # set up handler to look after randomisation of conditions etc
+    scene_loop = data.TrialHandler(nReps=1, method=u'sequential', 
+        extraInfo=expInfo, originPath=None,
+        trialList=data.importConditions('conditions/fouse_stimulus_f_run00%s.csv'%int(expInfo['session'])), name='scene_loop')
+    thisExp.addLoop(scene_loop)  # add the loop to the experiment
+    thisScene_loop = scene_loop.trialList[0]  # so we can initialise stimuli with some values
+    # abbreviate parameter names if possible (e.g. rgb=thisScene_loop.rgb)
+    if thisScene_loop != None:
+        for paramName in thisScene_loop.keys():
+            exec(paramName + '= thisScene_loop.' + paramName)
+    skipped=0
+    while skipped<stimulus_count:
+            scene_loop.next()
+            skipped=skipped+1
+    for thisScene_loop in scene_loop:
+        currentLoop = scene_loop
+        # abbreviate parameter names if possible (e.g. rgb = thisScene_loop.rgb)
         if thisScene_loop != None:
             for paramName in thisScene_loop.keys():
                 exec(paramName + '= thisScene_loop.' + paramName)
+        #------Prepare to start Routine "Transition"-------
+        t = 0
+        TransitionClock.reset()  # clock 
+        frameN = -1
+        routineTimer.add(0.500000)
+        # update component parameters for each repeat
+        # keep track of which components have finished
+        TransitionComponents = []
+        TransitionComponents.append(image)
+        for thisComponent in TransitionComponents:
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
         
-        for thisScene_loop in scene_loop:
-            thisFace_loop=face_loop.next()
-            currentLoop = scene_loop
-            # abbreviate parameter names if possible (e.g. rgb = thisScene_loop.rgb)
-            if thisScene_loop != None:
-                for paramName in thisScene_loop.keys():
-                    exec(paramName + '= thisScene_loop.' + paramName)
-            if thisFace_loop != None:
-                for paramName in thisFace_loop.keys():
-                    exec(paramName + '= thisFace_loop.' + paramName)
-            #------Prepare to start Routine "Transition"-------
-            t = 0
-            TransitionClock.reset()  # clock 
-            frameN = -1
-            routineTimer.add(0.500000)
-            # update component parameters for each repeat
-            # keep track of which components have finished
-            TransitionComponents = []
-            TransitionComponents.append(image)
+        #-------Start Routine "Transition"-------
+        continueRoutine = True
+        while continueRoutine and routineTimer.getTime() > 0:
+            # get current time
+            t = TransitionClock.getTime()
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
+            
+            # *image* updates
+            if t >= 0.0 and image.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                image.tStart = t  # underestimates by a little under one frame
+                image.frameNStart = frameN  # exact frame index
+                image.setAutoDraw(True)
+            elif image.status == STARTED and t >= (0.0 + .5):
+                image.setAutoDraw(False)
+            
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested that we end
+                routineTimer.reset()  # this is the new t0 for non-slip Routines
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
             for thisComponent in TransitionComponents:
-                if hasattr(thisComponent, 'status'):
-                    thisComponent.status = NOT_STARTED
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
             
-            #-------Start Routine "Transition"-------
-            continueRoutine = True
-            while continueRoutine and routineTimer.getTime() > 0:
-                # get current time
-                t = TransitionClock.getTime()
-                frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-                # update/draw components on each frame
-                
-                # *image* updates
-                if t >= 0.0 and image.status == NOT_STARTED:
-                    # keep track of start time/frame for later
-                    image.tStart = t  # underestimates by a little under one frame
-                    image.frameNStart = frameN  # exact frame index
-                    image.setAutoDraw(True)
-                elif image.status == STARTED and t >= (0.0 + .5):
-                    image.setAutoDraw(False)
-                
-                # check if all components have finished
-                if not continueRoutine:  # a component has requested that we end
-                    routineTimer.reset()  # this is the new t0 for non-slip Routines
-                    break
-                continueRoutine = False  # will revert to True if at least one component still running
-                for thisComponent in TransitionComponents:
-                    if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                        continueRoutine = True
-                        break  # at least one component has not yet finished
-                
-                # check for quit (the [Esc] key)
-                if event.getKeys(["escape"]):
-                    core.quit()
-                
-                # refresh the screen
-                if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                    win.flip()
+            # check for quit (the [Esc] key)
+            if event.getKeys(["escape"]):
+                core.quit()
             
-            #-------Ending Routine "Transition"-------
-            for thisComponent in TransitionComponents:
-                if hasattr(thisComponent, "setAutoDraw"):
-                    thisComponent.setAutoDraw(False)
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        #-------Ending Routine "Transition"-------
+        for thisComponent in TransitionComponents:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        
+        #------Prepare to start Routine "stimulus"-------
+        t = 0
+        stimulusClock.reset()  # clock 
+        frameN = -1
+        routineTimer.add(11.500000)
+        # update component parameters for each repeat
+        print scene
+        print face
+        face_image.setImage(face)
+        scene_image.setImage(scene)
+        stimulus_instr.setText(instruction_text)
+        blockcount= blockcount+1
+        # keep track of which components have finished
+        stimulusComponents = []
+        stimulusComponents.append(face_image)
+        stimulusComponents.append(scene_image)
+        stimulusComponents.append(stimulus_instr)
+        for thisComponent in stimulusComponents:
+            if hasattr(thisComponent, 'status'):
+                thisComponent.status = NOT_STARTED
+        
+        #-------Start Routine "stimulus"-------
+        continueRoutine = True
+        while continueRoutine and routineTimer.getTime() > 0:
+            #murfi.update()
+            # get current time
+            t = stimulusClock.getTime()
+            frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
+            # update/draw components on each frame
             
-            #------Prepare to start Routine "stimulus"-------
-            t = 0
-            stimulusClock.reset()  # clock 
-            frameN = -1
-            routineTimer.add(11.500000)
-            # update component parameters for each repeat
-            face_image.setTex(face)
-            scene_image.setImage(scene)
-            stimulus_instr.setText(instruction_text)
-            blockcount= blockcount+1
-            # keep track of which components have finished
-            stimulusComponents = []
-            stimulusComponents.append(face_image)
-            stimulusComponents.append(scene_image)
-            stimulusComponents.append(stimulus_instr)
+            # *face_image* updates
+            if t >= 0.0 and face_image.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                face_image.tStart = t  # underestimates by a little under one frame
+                face_image.frameNStart = frameN  # exact frame index
+                face_image.setAutoDraw(True)
+            elif face_image.status == STARTED and t >= (0.0 + timings['stimulus']):
+                face_image.setAutoDraw(False)
+            
+            # *scene_image* updates
+            if t >= 0.0 and scene_image.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                scene_image.tStart = t  # underestimates by a little under one frame
+                scene_image.frameNStart = frameN  # exact frame index
+                scene_image.setAutoDraw(True)
+            elif scene_image.status == STARTED and t >= (0.0 + timings['stimulus']):
+                scene_image.setAutoDraw(False)
+            # *stimulus_instr* updates
+            
+            if t >= 0.0 and stimulus_instr.status == NOT_STARTED:
+                # keep track of start time/frame for later
+                stimulus_instr.tStart = t  # underestimates by a little under one frame
+                stimulus_instr.frameNStart = frameN  # exact frame index
+                stimulus_instr.setAutoDraw(True)
+            elif stimulus_instr.status == STARTED and t >= (0.0 + timings['stimulus']):
+                stimulus_instr.setAutoDraw(False)
+                
+            # check if all components have finished
+            if not continueRoutine:  # a component has requested that we end
+                routineTimer.reset()  # this is the new t0 for non-slip Routines
+                break
+            continueRoutine = False  # will revert to True if at least one component still running
             for thisComponent in stimulusComponents:
-                if hasattr(thisComponent, 'status'):
-                    thisComponent.status = NOT_STARTED
+                if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
+                    continueRoutine = True
+                    break  # at least one component has not yet finished
             
-            #-------Start Routine "stimulus"-------
-            continueRoutine = True
-            while continueRoutine and routineTimer.getTime() > 0:
-                #murfi.update()
-                # get current time
-                t = stimulusClock.getTime()
-                frameN = frameN + 1  # number of completed frames (so 0 is the first frame)
-                # update/draw components on each frame
-                
-                # *face_image* updates
-                if t >= 0.0 and face_image.status == NOT_STARTED:
-                    # keep track of start time/frame for later
-                    face_image.tStart = t  # underestimates by a little under one frame
-                    face_image.frameNStart = frameN  # exact frame index
-                    face_image.setAutoDraw(True)
-                elif face_image.status == STARTED and t >= (0.0 + timings['stimulus']):
-                    face_image.setAutoDraw(False)
-                
-                # *scene_image* updates
-                if t >= 0.0 and scene_image.status == NOT_STARTED:
-                    # keep track of start time/frame for later
-                    scene_image.tStart = t  # underestimates by a little under one frame
-                    scene_image.frameNStart = frameN  # exact frame index
-                    scene_image.setAutoDraw(True)
-                elif scene_image.status == STARTED and t >= (0.0 + timings['stimulus']):
-                    scene_image.setAutoDraw(False)
-                # *stimulus_instr* updates
-                
-                if t >= 0.0 and stimulus_instr.status == NOT_STARTED:
-                    # keep track of start time/frame for later
-                    stimulus_instr.tStart = t  # underestimates by a little under one frame
-                    stimulus_instr.frameNStart = frameN  # exact frame index
-                    stimulus_instr.setAutoDraw(True)
-                elif stimulus_instr.status == STARTED and t >= (0.0 + timings['stimulus']):
-                    stimulus_instr.setAutoDraw(False)
-                    
-                # check if all components have finished
-                if not continueRoutine:  # a component has requested that we end
-                    routineTimer.reset()  # this is the new t0 for non-slip Routines
-                    break
-                continueRoutine = False  # will revert to True if at least one component still running
-                for thisComponent in stimulusComponents:
-                    if hasattr(thisComponent, "status") and thisComponent.status != FINISHED:
-                        continueRoutine = True
-                        break  # at least one component has not yet finished
-                
-                # check for quit (the [Esc] key)
-                if event.getKeys(["escape"]):
-                    core.quit()
-                
-                # refresh the screen
-                if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
-                    win.flip()
+            # check for quit (the [Esc] key)
+            if event.getKeys(["escape"]):
+                core.quit()
             
-            #-------Ending Routine "stimulus"-------
-            face_loop.next()
-            for thisComponent in stimulusComponents:
-                if hasattr(thisComponent, "setAutoDraw"):
-                    thisComponent.setAutoDraw(False)
-            if blockcount==3:
-                face_loop.finished=1
-                scene_loop.finished=1
-            thisExp.nextEntry()
+            # refresh the screen
+            if continueRoutine:  # don't flip if this routine is over or we'll get a blank screen
+                win.flip()
+        
+        #-------Ending Routine "stimulus"-------
+        stimulus_count=stimulus_count+1
+        for thisComponent in stimulusComponents:
+            if hasattr(thisComponent, "setAutoDraw"):
+                thisComponent.setAutoDraw(False)
+        if blockcount==3:
+            scene_loop.finished=1
+        thisExp.nextEntry()
             
         # completed 1 repeats of 'scene_loop'
         
-        thisExp.nextEntry()
-        
-    # completed 1 repeats of 'face_loop'
     
     
     #------Prepare to start Routine "fixation"-------
@@ -1063,7 +1043,7 @@ for thisTrial in trials:
     for thisComponent in fixation_2Components:
         if hasattr(thisComponent, 'status'):
             thisComponent.status = NOT_STARTED
-    
+    murfi.update()
     #-------Start Routine "fixation_2"-------
     continueRoutine = True
     while continueRoutine and routineTimer.getTime() > 0:
@@ -1105,6 +1085,11 @@ for thisTrial in trials:
         if hasattr(thisComponent, "setAutoDraw"):
             thisComponent.setAutoDraw(False)
     thisExp.nextEntry()
+
+murfi_file=open('data' + os.path.sep + 'subject%s_session%s_%s_%s_%s.txt' %(expInfo['participant'], expInfo['session'], expInfo['date'],expName,'FFA_PPA'),'w+r')
+for idx in range(len(murfi.FB_FFA)):
+    murfi_file.write('%s %s %s \n'%(idx, murfi.FB_FFA[idx],murfi.FB_PPA[idx]))
+murfi_file.close()
 #------Prepare to start Routine "ending_screen"-------
 t = 0
 ending_screenClock.reset()  # clock 
@@ -1227,11 +1212,6 @@ print 'PPA vector is'
 print murfi.FB_PPA
 print '# of positive feedback trials is %s'%goodfeedback
 print '# of bad feedback trials is %s'%badfeedback
-murfi.update()
-murfi_file=open('data' + os.path.sep + 'subject%s_session%s_%s_%s_%s.txt' %(expInfo['participant'], expInfo['session'], expInfo['date'],expName,'FFA_PPA'),'w+r')
-for idx in range(len(murfi.FB_FFA)):
-    murfi_file.write('%s %s %s \n'%(idx, murfi.FB_FFA[idx],murfi.FB_PPA[idx]))
-murfi_file.close()
 value_file=open('data'+ os.path.sep + 'baseline_values' + os.path.sep+'subject%s_session%s_%s_%s_%s.txt' %(expInfo['participant'], expInfo['session'], expInfo['date'],expName,'baseline_values'),'w+r')
 value_file.write('%s \n %s \n %s \n %s \n'%(expInfo['V1:faces'],expInfo['V2:scenes'],expInfo['V3:50/50faces'],expInfo['V4:50/50scenes']))
 value_file.close()
