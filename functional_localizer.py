@@ -14,11 +14,11 @@ import numpy as np  # whole numpy lib is available, prepend 'np.'
 from numpy import sin, cos, tan, log, log10, pi, average, sqrt, std, deg2rad, rad2deg, linspace, asarray
 from numpy.random import random, randint, normal, shuffle
 import os  # handy system and path functions
-#from scripts.query_murfi import Murfi
-#
-#murfi_IP = '192.168.2.5'
-#murfi_PORT = 15001
-#murfi_TR = 127
+from scripts.query_murfi import Murfi
+
+murfi_IP = '192.168.2.5'
+murfi_PORT = 15001
+murfi_TR = 127
 
 num_triggers=5
 # Store info about the experiment session

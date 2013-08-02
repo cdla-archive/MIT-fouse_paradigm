@@ -36,8 +36,8 @@ if dlg.OK == False:
     core.quit()  # user pressed cancel
 
 if int(expInfo_init['session'])==1:
-expInfo={u'participant':u'%s'%expInfo_init['participant'],u'session':u'%s'%expInfo_init['session'],u'V1:faces':u'',u'V2:scenes':u'',u'V3:50/50faces':u'',u'V4:50/50scenes':u''}
-dlg2=gui.DlgFromDict(dictionary=expInfo, title=expName, order=['participant','session','V1:faces','V2:scenes','V3:50/50faces','V4:50/50scenes'],fixed=['participant','session'])
+    expInfo={u'participant':u'%s'%expInfo_init['participant'],u'session':u'%s'%expInfo_init['session'],u'V1:faces':u'',u'V2:scenes':u'',u'V3:50/50faces':u'',u'V4:50/50scenes':u''}
+    dlg2=gui.DlgFromDict(dictionary=expInfo, title=expName, order=['participant','session','V1:faces','V2:scenes','V3:50/50faces','V4:50/50scenes'],fixed=['participant','session'])
 else:
     if os.path.isfile(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo_init['participant']))[-1]):
         print 'using previous baseline values'
@@ -113,12 +113,6 @@ else:
     timings['stimulus']=11.5
     timings['fixation']=4
     timings['fixation_2']=10
-    murfi_FAKE = True
-    if int(expInfo['session'])==1:
-        expInfo['V2:scenes']='-1'
-        expInfo['V1:faces']='.3'
-        expInfo['V4:50/50scenes']='0'
-        expInfo['V3:50/50faces']='0'
 
 #if int(expInfo['session']) != 1:
 #    if os.path.isfile(glob('data'+ os.path.sep + 'baseline_values' + os.path.sep + 'subject%s*'%(expInfo['participant']))[-1]):
@@ -131,18 +125,18 @@ else:
 
 murfi = Murfi(murfi_IP, murfi_PORT, murfi_TR, murfi_FAKE)
 recs=[]
-def makeFBrecs(zero_val,fb,fillColor=None):
+def makeFBrecs(zero_val,fb,fillColor=None,xoffset=0):
     if thisTrial.instruction_text=='Attend to Scenes':
         if fb >=zero_val:
             rec_height=1*(fb-zero_val)/(30*(max-zero_val))*.5
             for idx in range(30):
-                rec=visual.ShapeStim(win, closeShape=True, vertices=((-.125,idx*rec_height),(.125,idx*rec_height),(.125,(idx+1)*rec_height),(-.125,(idx+1)*rec_height)),depth=-3,opacity=1,fillColor='Red',lineColor='Red')
+                rec=visual.ShapeStim(win, closeShape=True, vertices=((xoffset-.125,idx*rec_height),(xoffset+.125,idx*rec_height),(xoffset+.125,(idx+1)*rec_height),(xoffset-.125,(idx+1)*rec_height)),depth=-3,opacity=1,fillColor='Red',lineColor='Red')
                 recs.append(rec)
         elif fb<zero_val:
             rec_height=(fb-zero_val)/(30*(min-zero_val))*.5
             for idx in range(30):
             #rec=visual.ShapeStim(win, closeShape=True, vertices=((-.125,idx*rec_height),(.125,idx*rec_height),(.125,(idx+1)*rec_height),(-.125,(idx+1)*rec_height),depth=1,opacity=1,fillColor='Green')
-                rec=visual.ShapeStim(win, closeShape=True, vertices=((-.125,idx*-1*rec_height),(.125,idx*-1*rec_height),(.125,(idx+1)*-1*rec_height),(-.125,(idx+1)*-1*rec_height)),depth=-3,opacity=1,fillColor='Green',lineColor='Green')
+                rec=visual.ShapeStim(win, closeShape=True, vertices=((xoffset-.125,idx*-1*rec_height),(xoffset+.125,idx*-1*rec_height),(xoffset+.125,(idx+1)*-1*rec_height),(xoffset-.125,(idx+1)*-1*rec_height)),depth=-3,opacity=1,fillColor='Green',lineColor='Green')
                 recs.append(rec)
      #   if fb <=zero_val:
       #      rec_height=-1*(fb-zero_val)/(30*(max-zero_val))*.5
@@ -159,13 +153,13 @@ def makeFBrecs(zero_val,fb,fillColor=None):
         if fb >=zero_val:
             rec_height=1*(fb-zero_val)/(30*(max-zero_val))*.5
             for idx in range(30):
-                rec=visual.ShapeStim(win, closeShape=True, vertices=((-.125,idx*rec_height),(.125,idx*rec_height),(.125,(idx+1)*rec_height),(-.125,(idx+1)*rec_height)),depth=-3,opacity=1,fillColor='Green',lineColor='Green')
+                rec=visual.ShapeStim(win, closeShape=True, vertices=((xoffset-.125,idx*rec_height),(xoffset+.125,idx*rec_height),(xoffset+.125,(idx+1)*rec_height),(xoffset-.125,(idx+1)*rec_height)),depth=-3,opacity=1,fillColor='Green',lineColor='Green')
                 recs.append(rec)
         elif fb<zero_val:
             rec_height=(fb-zero_val)/(30*(min-zero_val))*.5
             for idx in range(30):
             #rec=visual.ShapeStim(win, closeShape=True, vertices=((-.125,idx*rec_height),(.125,idx*rec_height),(.125,(idx+1)*rec_height),(-.125,(idx+1)*rec_height),depth=1,opacity=1,fillColor='Green')
-                rec=visual.ShapeStim(win, closeShape=True, vertices=((-.125,idx*-1*rec_height),(.125,idx*-1*rec_height),(.125,(idx+1)*-1*rec_height),(-.125,(idx+1)*-1*rec_height)),depth=-3,opacity=1,fillColor='Red',lineColor='Red')
+                rec=visual.ShapeStim(win, closeShape=True, vertices=((xoffset-.125,idx*-1*rec_height),(xoffset+.125,idx*-1*rec_height),(xoffset+.125,(idx+1)*-1*rec_height),(xoffset-.125,(idx+1)*-1*rec_height)),depth=-3,opacity=1,fillColor='Red',lineColor='Red')
                 recs.append(rec)
     return recs
 # Initialize components for Routine "pretrigger_instr"
@@ -272,74 +266,66 @@ image_3 = visual.ImageStim(win=win, name='image_3',
     texRes=128, interpolate=True, depth=0.0)
 
 #Initialize compoennts for Routine "summary screen"
-#background_bar1 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0, lineColor=(1.0,1.0,1.0), lineColorSpace='rgb',
-#pos=(0,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
-#zero_val_line1=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
-#pos=(0,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
-#zero1=visual.TextStim(win,text='0',font='', pos=(.155,0),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#top_text1=visual.TextStim(win,text='placeholder',pos=(.275,.5),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#bottom_text1=visual.TextStim(win,text='placeholder',pos=(.275,-.5),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#top_star1 = visual.TextStim(win=win, ori=0, name='top_star',
-#    text=u'*',    font=u'Arial',
-#    pos=[.5, .5], height=0.5, wrapWidth=None,
-#    color=u'white', colorSpace=u'rgb', opacity=1,
-#    depth=-2.0)
-#bottom_star1 = visual.TextStim(win=win, ori=0, name='top_star',
-#    text=u'*',    font=u'Arial',
-#    pos=[.5, -.5], height=0.5, wrapWidth=None,
-#    color=u'white', colorSpace=u'rgb', opacity=1,
-#    depth=-2.0)
-#background_bar2 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0, lineColor=(1.0,1.0,1.0), lineColorSpace='rgb',
-#pos=(0,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
-#zero_val_line2=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
-#pos=(0,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
-#zero2=visual.TextStim(win,text='0',font='', pos=(.155,0),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#top_text2=visual.TextStim(win,text='placeholder',pos=(.275,.5),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#bottom_text2=visual.TextStim(win,text='placeholder',pos=(.275,-.5),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#top_star2 = visual.TextStim(win=win, ori=0, name='top_star',
-#    text=u'*',    font=u'Arial',
-#    pos=[.5, .5], height=0.5, wrapWidth=None,
-#    color=u'white', colorSpace=u'rgb', opacity=1,
-#    depth=-2.0)
-#bottom_star2 = visual.TextStim(win=win, ori=0, name='top_star',
-#    text=u'*',    font=u'Arial',
-#    pos=[.5, -.5], height=0.5, wrapWidth=None,
-#    color=u'white', colorSpace=u'rgb', opacity=1,
-#    depth=-2.0)
-#background_bar3 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0, lineColor=(1.0,1.0,1.0), lineColorSpace='rgb',
-#pos=(0,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
-#zero_val_line3=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
-#pos=(0,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
-#zero3=visual.TextStim(win,text='0',font='', pos=(.155,0),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#top_text3=visual.TextStim(win,text='placeholder',pos=(.275,.5),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#bottom_text3=visual.TextStim(win,text='placeholder',pos=(.275,-.5),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#top_star3 = visual.TextStim(win=win, ori=0, name='top_star',
-#    text=u'*',    font=u'Arial',
-#    pos=[.5, .5], height=0.5, wrapWidth=None,
-#    color=u'white', colorSpace=u'rgb', opacity=1,
-#    depth=-2.0)
-#bottom_star3 = visual.TextStim(win=win, ori=0, name='top_star',
-#    text=u'*',    font=u'Arial',
-#    pos=[.5, -.5], height=0.5, wrapWidth=None,
-#    color=u'white', colorSpace=u'rgb', opacity=1,
-#    depth=-2.0)
-#background_bar4 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0, lineColor=(1.0,1.0,1.0), lineColorSpace='rgb',
-#pos=(0,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
-#zero_val_line4=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
-#pos=(0,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
-#zero4=visual.TextStim(win,text='0',font='', pos=(.155,0),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#top_text4=visual.TextStim(win,text='placeholder',pos=(.275,.5),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#bottom_text4=visual.TextStim(win,text='placeholder',pos=(.275,-.5),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
-#top_star4 = visual.TextStim(win=win, ori=0, name='top_star',
-#    text=u'*',    font=u'Arial',
-#    pos=[.5, .5], height=0.5, wrapWidth=None,
-#    color=u'white', colorSpace=u'rgb', opacity=1,
-#    depth=-2.0)
-#bottom_star4 = visual.TextStim(win=win, ori=0, name='top_star',
-#    text=u'*',    font=u'Arial',
-#    pos=[.5, -.5], height=0.5, wrapWidth=None,
-#    color=u'white', colorSpace=u'rgb', opacity=1,
-#    depth=-2.0)
+background_bar1 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0, lineColor=(1.0,1.0,1.0), lineColorSpace='rgb',
+pos=(-.6,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
+zero_val_line1=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
+pos=(-.6,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
+zero1=visual.TextStim(win,text='0',font='', pos=(.155,0),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
+top_text1=visual.TextStim(win,text='faces',pos=(.8,.6),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
+bottom_text1=visual.TextStim(win,text='scenes',pos=(.8,-.6),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
+top_star1 = visual.TextStim(win=win, ori=0, name='top_star',
+    text=u'*',    font=u'Arial',
+    pos=[-.6, .55], height=0.2, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=-2.0)
+bottom_star1 = visual.TextStim(win=win, ori=0, name='top_star',
+    text=u'*',    font=u'Arial',
+    pos=[-.6, -.6], height=0.2, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=-2.0)
+background_bar2 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0, lineColor=(1.0,1.0,1.0), lineColorSpace='rgb',
+pos=(-.2,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
+zero_val_line2=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
+pos=(-.2,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
+top_star2 = visual.TextStim(win=win, ori=0, name='top_star',
+    text=u'*',    font=u'Arial',
+    pos=[-.2, .55], height=0.2, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=-2.0)
+bottom_star2 = visual.TextStim(win=win, ori=0, name='top_star',
+    text=u'*',    font=u'Arial',
+    pos=[-.2, -.6], height=0.2, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=-2.0)
+background_bar3 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0, lineColor=(1.0,1.0,1.0), lineColorSpace='rgb',
+pos=(.2,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
+zero_val_line3=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
+pos=(.2,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
+top_star3 = visual.TextStim(win=win, ori=0, name='top_star',
+    text=u'*',    font=u'Arial',
+    pos=[.2, .55], height=0.2, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=-2.0)
+bottom_star3 = visual.TextStim(win=win, ori=0, name='top_star',
+    text=u'*',    font=u'Arial',
+    pos=[.2, -.6], height=0.2, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=-2.0)
+background_bar4 = visual.ShapeStim(win=win, name='background_bar', lineWidth=2.0, lineColor=(1.0,1.0,1.0), lineColorSpace='rgb',
+pos=(.6,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,-.5),(.125,-.5),(.125,.5),(-.125,.5)))#, fillColor='white', fillColorSpace='rgb')
+zero_val_line4=visual.ShapeStim(win=win, name='zero_val_line', lineWidth=2.0, lineColor=(1.0,1.0,1.0),lineColorSpace='rgb',
+pos=(.6,0),size=1,opacity=1,depth=2,interpolate=True,vertices=((-.125,0),(.125,0)))
+zero4=visual.TextStim(win,text='0',font='', pos=(.6+.155,0),depth=2,rgb=None,color=(1.0,1.0,1.0),colorSpace='rgb',opacity=1.0)
+top_star4 = visual.TextStim(win=win, ori=0, name='top_star',
+    text=u'*',    font=u'Arial',
+    pos=[.6, .55], height=0.2, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=-2.0)
+bottom_star4 = visual.TextStim(win=win, ori=0, name='top_star',
+    text=u'*',    font=u'Arial',
+    pos=[.6, -.6], height=0.2, wrapWidth=None,
+    color=u'white', colorSpace=u'rgb', opacity=1,
+    depth=-2.0)
     # Initialize components for Routine "ending_screen"
 ending_screenClock = core.Clock()
 text = visual.TextStim(win=win, ori=0, name='text',
@@ -911,7 +897,7 @@ for thisTrial in trials:
     if parts[2]=='Faces':
         top_text.setText('Faces')
         bottom_text.setText('Scenes')
-        face_scene_conditions.append('Face')
+        face_scene_conditions.append('Faces')
         feedbackComponents.append(top_star)
     elif parts[2]=='Scenes':
         top_text.setText('Faces')
@@ -940,13 +926,11 @@ for thisTrial in trials:
         PPA_vector=np.array(murfi.FB_PPA[index1:index2])
         indices_to_remove=[]
         for idx,val in enumerate(FFA_vector):
-            #print idx
             if math.isnan(FFA_vector[idx]) or math.isnan(PPA_vector[idx]):
                 indices_to_remove.append(idx)
         FFA_vector=np.delete(FFA_vector,indices_to_remove)
         PPA_vector=np.delete(PPA_vector,indices_to_remove)
         fb_average=np.median(np.array(FFA_vector)-np.array(PPA_vector))
-        #fb_average=np.median(np.array(PPA_vector)-np.array(FFA_vector))
         fb_average=np.median(np.array(FFA_vector)-np.array(PPA_vector))
         if fb_average >=zero_val:
             badfeedback=badfeedback+1
@@ -959,19 +943,12 @@ for thisTrial in trials:
         min=float(expInfo['V2:scenes'])
         zero_val=float(expInfo['V3:50/50faces'])
         feedbackComponents.append('top_star')
-        #fb_1=np.mean(np.array(murfi.FB_FFA[-19:-13])-np.array(murfi.FB_PPA[-19:-13]))
-        #fb_2=np.mean(np.array(murfi.FB_FFA[-13:-7])-np.array(murfi.FB_PPA[-13:-7]))
-       # fb_3=np.mean(np.array(murfi.FB_FFA[-7:-1])-np.array(murfi.FB_PPA[-7:-1]))
-        #fb_average=np.mean(fb_1,fb_2,fb_3)
         index1= int(vector_indices[image_list-1][0])
         index2= int(vector_indices[image_list-1][1])
         FFA_vector=np.array(murfi.FB_FFA[index1:index2])
         PPA_vector=np.array(murfi.FB_PPA[index1:index2])
-        #print PPA_vector
-        #print FFA_vector
         indices_to_remove=[]
         for idx,val in enumerate(FFA_vector):
-            #print idx
             if math.isnan(FFA_vector[idx]) or math.isnan(PPA_vector[idx]):
                 indices_to_remove.append(idx)
         FFA_vector=np.delete(FFA_vector,indices_to_remove)
@@ -989,8 +966,6 @@ for thisTrial in trials:
     else:
        fb = fb_average
     fbs.append(fb)
-    #print murfi.FB_FFA
-    #print murfi.FB_PPA
     print thisTrial.instruction_text
     print 'feedback is %s'%fb_average
     print 'zero_val is %s'%zero_val
@@ -1139,7 +1114,7 @@ frameN = -1
 # update component parameters for each repeat
 # keep track of which components have finished
 ending_screenComponents = []
-text.setText('# of successful feedback trials: %s \n \n # of unsuccessful feedback trials: %s\n\n\n\n\n\n\n\n\n Experimenter press space'%(goodfeedback, badfeedback))
+text.setText('# of successful feedback trials: %s \n \n# of unsuccessful feedback trials: %s\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Experimenter press space'%(goodfeedback, badfeedback))
 ending_screenComponents.append(text)
 for thisComponent in ending_screenComponents:
     if hasattr(thisComponent, 'status'):
@@ -1156,6 +1131,32 @@ ending_button.status = NOT_STARTED
 ending_screenComponents = []
 ending_screenComponents.append(text)
 ending_screenComponents.append(ending_button)
+ending_screenComponents.append(background_bar1)
+ending_screenComponents.append(zero_val_line1)
+ending_screenComponents.append(top_text1)
+ending_screenComponents.append(bottom_text1)
+ending_screenComponents.append(background_bar2)
+ending_screenComponents.append(zero_val_line2)
+ending_screenComponents.append(background_bar3)
+ending_screenComponents.append(zero_val_line3)
+ending_screenComponents.append(background_bar4)
+ending_screenComponents.append(zero_val_line4)
+print face_scene_conditions
+rec=[]
+recs=[]
+xoffsets=[-.6,-.2,.2,.6]
+for idx in range(len(face_scene_conditions)):
+    if face_scene_conditions[idx]=='Faces':
+        ending_screenComponents.append(eval('top_star%s'%(int(idx)+1)))
+        zero_val=float(expInfo['V3:50/50faces'])
+        thisTrial.instruction_text='Attend to Faces'
+        rec.append(makeFBrecs(zero_val,fbs[idx],fillColor=None,xoffset=xoffsets[idx]))
+    elif face_scene_conditions[idx]=='Scenes':
+        ending_screenComponents.append(eval('bottom_star%s'%(int(idx)+1)))
+        zero_val=float(expInfo['V4:50/50scenes'])
+        thisTrial.instruction_text='Attend to Scenes'
+        rec.append(makeFBrecs(zero_val,fbs[idx],fillColor=None,xoffset=xoffsets[idx]))
+ending_screenComponents.append(recs)
 for thisComponent in ending_screenComponents:
     if hasattr(thisComponent, 'status'):
         thisComponent.status = NOT_STARTED
@@ -1173,9 +1174,10 @@ while continueRoutine:
         # keep track of start time/frame for later
         text.tStart = t  # underestimates by a little under one frame
         text.frameNStart = frameN  # exact frame index
-        text.setAutoDraw(True)
-    
-    # *ending_button* updates
+        #text.setAutoDraw(True)
+        for thisComponent in ending_screenComponents:
+            if hasattr(thisComponent, "setAutoDraw"): 
+                thisComponent.setAutoDraw(True)
     if t >= 0.0 and ending_button.status == NOT_STARTED:
         # keep track of start time/frame for later
         ending_button.tStart = t  # underestimates by a little under one frame
@@ -1191,7 +1193,8 @@ while continueRoutine:
             ending_button.rt = ending_button.clock.getTime()
             # a response ends the routine
             continueRoutine = False
-    
+    for idx in range(len(recs)):
+        recs[idx].setAutoDraw(True)
     # check if all components have finished
     if not continueRoutine:  # a component has requested that we end
         routineTimer.reset()  # this is the new t0 for non-slip Routines
@@ -1217,7 +1220,7 @@ for thisComponent in ending_screenComponents:
 win.close()
 
 # completed 5 repeats of 'trials'
-
+print fbs
 print 'FFA vector is'
 print murfi.FB_FFA
 print 'PPA vector is'
