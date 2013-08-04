@@ -20,6 +20,7 @@ from glob import glob
 import math
 
 murfi_IP = '192.168.2.5'
+#murfi_IP='132.183.139.230'
 murfi_PORT = 15001
 murfi_TR = 127
 

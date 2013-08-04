@@ -17,6 +17,7 @@ import os  # handy system and path functions
 from scripts.query_murfi import Murfi
 
 murfi_IP = '192.168.2.5'
+#murfi_IP='132.183.139.230'
 murfi_PORT = 15001
 murfi_TR = 127
 
@@ -55,7 +56,7 @@ if expInfo['participant']=='debug':
     blockend=12
     print "**********DEBUG MODE************"
 elif expInfo['participant']=='debugtiming':
-    win=win = visual.Window(size=(800,600), fullscr=False, screen=0, allowGUI=False, allowStencil=False,
+    win=win = visual.Window(size=(800,600), fullscr=True, screen=0, allowGUI=False, allowStencil=False,
     monitor='testMonitor', color=[0,0,0], colorSpace='rgb')
     timings['fixation']=36
     print "**********DEBUG MODE with proper timings************"
@@ -72,7 +73,7 @@ else:
 # Initialize components for Routine "pretrigger_instr"
 pretrigger_instrClock = core.Clock()
 text_2 = visual.TextStim(win=win, ori=0, name='text_2',
-    text='Instructions:\n\nIn this part of the experiment, you will be viewing either pure faces, pure scenes, or 50/50 blends of both. \n\n While viewing the images, if you see the same image twice in a row, please press the button box \n\n\n During the blends, if there is a repeat of the image of the condition that you are instructed please press the button box \n\n Experimenter press space to continue',    font='Arial',
+    text='Instructions:\n\nIn this part of the experiment, you will be viewing either pure faces, pure scenes, or 50/50 blends of both. \n\n While viewing the images, if you see the same image twice in a row, please press the button box \n\n\n During the blends, if there is a repeat of the image of the condition that you are instructed to pay attention to please press the button box \n\n Experimenter press space to continue',    font='Arial',
     pos=[0, 0], height=0.06, wrapWidth=None,
     color='white', colorSpace='rgb', opacity=1,
     depth=0.0)
